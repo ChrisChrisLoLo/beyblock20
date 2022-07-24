@@ -1,0 +1,6 @@
+[submodule "pcb/libs/keyswitches.pretty"]
+	path = pcb/libs/keyswitches.pretty
+	url = https://github.com/daprice/keyswitches.pretty.git
+[submodule "pcb/libs/kbd"]
+	path = pcb/libs/kbd
+	url = https://github.com/foostan/kbd
