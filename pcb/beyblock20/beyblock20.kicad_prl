@@ -1,9 +1,42 @@
 {
   "board": {
     "active_layer": 36,
-    "active_layer_preset": "All Layers",
+    "active_layer_preset": "",
     "auto_track_width": true,
-    "hidden_nets": [],
+    "hidden_nets": [
+      "row1",
+      "Net-(D1-Pad2)",
+      "Net-(D2-Pad2)",
+      "Net-(D3-Pad2)",
+      "Net-(D4-Pad2)",
+      "Net-(D5-Pad2)",
+      "row2",
+      "Net-(D6-Pad2)",
+      "Net-(D7-Pad2)",
+      "Net-(D8-Pad2)",
+      "Net-(D9-Pad2)",
+      "Net-(D10-Pad2)",
+      "row3",
+      "Net-(D11-Pad2)",
+      "Net-(D12-Pad2)",
+      "Net-(D14-Pad2)",
+      "Net-(D15-Pad2)",
+      "row4",
+      "Net-(D16-Pad2)",
+      "Net-(D17-Pad2)",
+      "Net-(D18-Pad2)",
+      "Net-(D19-Pad2)",
+      "Net-(D20-Pad2)",
+      "scl",
+      "sda",
+      "gnd",
+      "3v3",
+      "col1",
+      "col2",
+      "col3",
+      "col4",
+      "col5"
+    ],
     "high_contrast_mode": 0,
     "net_color_mode": 1,
     "opacity": {
@@ -62,7 +95,7 @@
       35,
       36
     ],
-    "visible_layers": "fffffff_ffffffff",
+    "visible_layers": "0000000_80000000",
     "zone_display_mode": 0
   },
   "meta": {
