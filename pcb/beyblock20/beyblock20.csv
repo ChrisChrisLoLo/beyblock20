@@ -1,8 +1,3 @@
-"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
-1;"H8,H7,H6,H5,H4,H3,H2,H1";"MountingHole_2.2mm_M2";8;"MountingHole";;;
-2;"OL2,OL1";"OLED_v2";2;"OLED";;;
-3;"U1";"Seeeduino XIAO-MOUDLE14P-2.54-21X17.8MM";1;"SeeeduinoXIAO";;;
-4;"SW20,SW19,SW18,SW17,SW16,SW15,SW14,SW13,SW12,SW11,SW10,SW9,SW8,SW7,SW6,SW5,SW4,SW3,SW2,SW1";"Kailh_socket_MX";20;"SW_SPST";;;
-5;"J2";"PinHeader_1x04_P2.54mm_Vertical";1;"Conn_01x04_Male";;;
-6;"J1";"PinSocket_1x04_P2.54mm_Vertical";1;"Conn_01x04_Female";;;
-7;"D20,D19,D18,D17,D16,D15,D14,D13,D12,D11,D10,D9,D8,D7,D6,D5,D4,D3,D2,D1";"D_MiniMELF";20;"LL4148";;;
+Id,Designator,Package,Quantity,MPN,Supplier and ref,,
+1,U1,Seeeduino XIAO-MOUDLE14P-2.54-21X17.8MM,1,Seeed XIAO RP2040,,,
+2,"D20,D19,D18,D17,D16,D15,D14,D13,D12,D11,D10,D9,D8,D7,D6,D5,D4,D3,D2,D1",D_MiniMELF,20,LL4148,,,
