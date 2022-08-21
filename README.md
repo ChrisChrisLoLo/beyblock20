@@ -29,5 +29,5 @@ I will outline the main parts here, though since the design, isn't finalized, yo
 | Acrylic Cover             | 1                                   | SVG in the repository. Optional                                                                                                                              |   |   |
 | LL4148 SMD Diodes         | 20                                  |                                                                                                                                                              |   |   |
 | Kailh Hotswap sockets     | 20                                  |    
-| 0.91 inch Oled Display    | 1                                   | Optional. Typical Oled Display. NOTE: You can only have one per combination, since it's not (easily) possible to have multiple displays of the same type display different things on the same I2C bus 
+| 0.91 inch Oled Display    | 1                                   | Optional. Typical Oled Display. NOTE: You can only have one per I2C bus, since it's not (easily) possible to have multiple displays of the same type display different things on the same I2C bus 
 
