@@ -12,6 +12,7 @@ Prototyping phase. I need to write some firmware to handle I2C communication bet
     - Parts could include Display modules, sensors, sliders, LEDs, trackpads, etc.
     - Opens the possibility of a ecosystem of interchangible parts
 - Uses hotswap sockets, so you can swap out keys to your hearts content
+- Has TTRS jacks that uses the same I2C bus, so having a split keyboard should be doable!
 - Aside from the magnetic connector, uses commodity parts, so it should be easy to order and assemble your own!
 
 ## Design
