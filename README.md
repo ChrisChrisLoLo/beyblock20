@@ -1,4 +1,4 @@
-# beyblock20, the magnetic modular macropad
+# beyblock20
 
 A 20 key modular macropad that can connect with other elements to form a larger macropad via magnets. This versatile module in combination with the encoder module (knoblin3) can be used to form a 20 key macropad with 3 encoders, a 4x10 ortholinear board, or a 4x10 ortholinear board with 3 encoders! Each module has a Seeeduino XIAO on it, and all of them communicate on an I2C bus. Because of the I2C bus, more kinds modules can be made for an even more fine tuned and customized macropad/keyboard.
 
