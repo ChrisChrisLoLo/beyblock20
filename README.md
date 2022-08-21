@@ -16,7 +16,7 @@ Prototyping phase. I need to write some firmware to handle I2C communication bet
 ## Design
 This design came out the Seeedstudio SeeeduinoXiao Keyboard Competition. The Seeeduino XIAO is a great, affordable, little microcontroller. I'm a big fan of the USB C port and castellated pins on it. It's biggest tradeoff was that there aren't as many pins on it as a pro-micro, meaning that you have to think outside the box to get enough pins to make a keyboard out of it. I found this constraint to be really fun, since I pushed me to take an I2C "split" keyboard approach. The beyblock20 also draws inspiration from Zack Freedman's (Mirage Keyboard)[https://github.com/ZackFreedman/MiRage], particularly with the idea of an unbounded I2C bus.  
 
-Thank you to Seeedstudio for offering to manufactering these boards for free. I found the board to be an excellent product, and the community support to be awesome.
+Thank you to Seeedstudio for offering to manufactering these boards for free. I found the board to be an excellent product, and the community support for said board to be awesome.
 
 ## Parts
 I will outline the main parts here, though since the design, isn't finalized, you may need a few addtional parts, like screws and such
