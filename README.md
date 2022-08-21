@@ -1,6 +1,6 @@
 # beyblock20
 
-A 20 key modular macropad that can connect with other elements to form a larger macropad via magnets. This versatile module in combination with the encoder module (knoblin3) can be used to form a 20 key macropad with 3 encoders, a 4x10 ortholinear board, or a 4x10 ortholinear board with 3 encoders! Each module has a Seeeduino XIAO on it, and all of them communicate on an I2C bus. Because of the I2C bus, more kinds modules can be made for an even more fine tuned and customized macropad/keyboard.
+A 20 key modular macropad that can connect with other elements to form a larger macropad via magnets. This versatile module in combination with the encoder module (knoblin3) can be used to form a 20 key macropad with 3 encoders, a 4x10 ortholinear board, or a 4x10 ortholinear board with 3 encoders! Each module has a Seeeduino XIAO on it, and all of them communicate on an I2C bus. Because of the I2C bus, more kinds modules can be made for an even more fine tuned and customized macropad/keyboard, as well as up to 128 devices to be connected together at once!
 
 ## Features
 - A highly customizable framework to tailor your macropad to your needs, when you need to
@@ -29,4 +29,5 @@ I will outline the main parts here, though since the design, isn't finalized, yo
 | Acrylic Cover             | 1                                   | SVG in the repository. Optional                                                                                                                              |   |   |
 | LL4148 SMD Diodes         | 20                                  |                                                                                                                                                              |   |   |
 | Kailh Hotswap sockets     | 20                                  |    
+| 0.91 inch Oled Display    | 1                                   | Optional. Typical Oled Display. NOTE: You can only have one per combination, since it's not (easily) possible to have multiple displays of the same type display different things on the same I2C bus 
 
