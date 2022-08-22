@@ -1,5 +1,7 @@
 # beyblock20
 
+![splash image](https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181421951.jpg)
+
 A 20 key modular macropad that can connect with other elements to form a larger macropad via magnets. This versatile module in combination with the encoder module (knoblin3) can be used to form a 20 key macropad with 3 encoders, a 4x10 ortholinear board, or a 4x10 ortholinear board with 3 encoders! Each module has a Seeeduino XIAO on it, and all of them communicate on an I2C bus. Because of the I2C bus, more kinds modules can be made for an even more fine tuned and customized macropad/keyboard, as well as up to 128 devices to be connected together at once!
 
 ## Status
@@ -15,21 +17,25 @@ Prototyping phase. I need to write some firmware to handle I2C communication bet
 - Has TTRS jacks that uses the same I2C bus, so having a split keyboard should be doable!
 - Aside from the magnetic connector, uses commodity parts, so it should be easy to order and assemble your own!
 
+![second image of beyblock](https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181439555.jpg)
+
 ## Design
 This design came out the Seeedstudio SeeeduinoXiao Keyboard Competition. The Seeeduino XIAO is a great, affordable, little microcontroller. I'm a big fan of the USB C port and castellated pins on it. It's biggest tradeoff was that there aren't as many pins on it as a pro-micro, meaning that you have to think outside the box to get enough pins to make a keyboard out of it. I found this constraint to be really fun, since I pushed me to take an I2C "split" keyboard approach. The beyblock20 also draws inspiration from Zack Freedman's (Mirage Keyboard)[https://github.com/ZackFreedman/MiRage], particularly with the idea of an unbounded I2C bus.  
 
 Thank you to Seeedstudio for manufacturing these boards for free for the competition. I found the board to be an excellent product, and the community support for said board to be awesome.
 
+![third image of beyblock](https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_182140266.jpg)
+
 ## Parts
 I will outline the main parts here, though since the design, isn't finalized, you may need a few addtional parts, like screws and such
-| Part                      | Count                               | Comment                                                                                                                                                      |   |   |
-|---------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---|---|
-| Seeeduino XIAO RP2040     | 1 per module                        | You can try other XIAO variants, though more parts may be required to make something like a wireless beyblock20. Any firmware written will be for the RP2040 |   |   |
-| 4 pin magnetic connectors | 2 per module                        | You'll look like ones from here: https://www.adafruit.com/product/5358. I was able to get mine on AliExpress                                                 |   |   |
-| M2 screws/nuts            | TBD (you'll want atleast 8 of each) | You'll need some to secure the board to the case, and the cover to the board                                                                                 |   |   |
-| M2 8mm Male/Female spacer | 4                                   | Used to secure the acrylic cover to the beyblock20                                                                                                           |   |   |
-| Acrylic Cover             | 1                                   | SVG in the repository. Optional                                                                                                                              |   |   |
-| LL4148 SMD Diodes         | 20                                  |                                                                                                                                                              |   |   |
+| Part                      | Count                               | Comment                                                                                                                                                      |
+|---------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Seeeduino XIAO RP2040     | 1 per module                        | You can try other XIAO variants, though more parts may be required to make something like a wireless beyblock20. Any firmware written will be for the RP2040 |
+| 4 pin magnetic connectors | 2 per module                        | You'll look like ones from here: https://www.adafruit.com/product/5358. I was able to get mine on AliExpress                                                 |
+| M2 screws/nuts            | TBD (you'll want atleast 8 of each) | You'll need some to secure the board to the case, and the cover to the board                                                                                 |
+| M2 8mm Male/Female spacer | 4                                   | Used to secure the acrylic cover to the beyblock20                                                                                                           |
+| Acrylic Cover             | 1                                   | SVG in the repository. Optional                                                                                                                              |
+| LL4148 SMD Diodes         | 20                                  |                                                                                                                                                              |
 | Kailh Hotswap sockets     | 20                                  |    
 | 0.91 inch Oled Display    | 1                                   | Optional. Typical Oled Display. NOTE: You can only have one per I2C bus, since it's not (easily) possible to have multiple displays of the same type display different things on the same I2C bus 
 
