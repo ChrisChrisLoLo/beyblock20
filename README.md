@@ -22,9 +22,9 @@ Prototyping phase. I need to write some firmware to handle I2C communication bet
 <img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181439555.jpg" width="500">
 
 ## Design
-This design came out the Seeedstudio SeeeduinoXiao Keyboard Competition. The Seeeduino XIAO is a great, affordable, little microcontroller. I'm a big fan of the USB C port and castellated pins on it. It's biggest tradeoff was that there aren't as many pins on it as a pro-micro, meaning that you have to think outside the box to get enough pins to make a keyboard out of it. I found this constraint to be really fun, since I pushed me to take an I2C "split" keyboard approach. The beyblock20 also draws inspiration from Zack Freedman's (Mirage Keyboard)[https://github.com/ZackFreedman/MiRage], particularly with the idea of an unbounded I2C bus.  
+This design came out the Seeedstudio SeeeduinoXiao Keyboard Competition. The Seeeduino XIAO is a great, affordable, little microcontroller. I'm a big fan of the USB C port and castellated pins on it. It's biggest tradeoff was that there aren't as many pins on it as a pro-micro, meaning that you have to think outside the box to get enough pins to make a keyboard out of it. I found this constraint to be really fun, since I pushed me to take an I2C "split" keyboard approach. The beyblock20 also draws inspiration from Zack Freedman's [Mirage Keyboard](https://github.com/ZackFreedman/MiRage), particularly with the idea of an unbounded I2C bus.  
 
-Thank you to Seeedstudio for manufacturing these boards for free for the competition. I found the board to be an excellent product, and the community support for said board to be awesome.
+Thank you to Seeedstudio for manufacturing these boards for free for the competition. I found the Seeduino Xiao RP2040 board to be an excellent product, and the community support for said board to be awesome.
 
 <img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_182140266.jpg" width="500">
 
