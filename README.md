@@ -1,6 +1,6 @@
 # beyblock20
 
-![splash image](https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181421951.jpg)
+<img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181421951.jpg" width="500">
 
 A 20 key modular macropad that can connect with other elements to form a larger macropad via magnets. This versatile module in combination with the encoder module (knoblin3) can be used to form a 20 key macropad with 3 encoders, a 4x10 ortholinear board, or a 4x10 ortholinear board with 3 encoders! Each module has a Seeeduino XIAO on it, and all of them communicate on an I2C bus. Because of the I2C bus, more kinds modules can be made for an even more fine tuned and customized macropad/keyboard, as well as up to 128 devices to be connected together at once!
 
@@ -19,14 +19,14 @@ Prototyping phase. I need to write some firmware to handle I2C communication bet
 - Has TTRS jacks that uses the same I2C bus, so having a split keyboard should be doable!
 - Aside from the magnetic connector, uses commodity parts, so it should be easy to order and assemble your own!
 
-![second image of beyblock](https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181439555.jpg)
+<img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181439555.jpg" width="500">
 
 ## Design
 This design came out the Seeedstudio SeeeduinoXiao Keyboard Competition. The Seeeduino XIAO is a great, affordable, little microcontroller. I'm a big fan of the USB C port and castellated pins on it. It's biggest tradeoff was that there aren't as many pins on it as a pro-micro, meaning that you have to think outside the box to get enough pins to make a keyboard out of it. I found this constraint to be really fun, since I pushed me to take an I2C "split" keyboard approach. The beyblock20 also draws inspiration from Zack Freedman's (Mirage Keyboard)[https://github.com/ZackFreedman/MiRage], particularly with the idea of an unbounded I2C bus.  
 
 Thank you to Seeedstudio for manufacturing these boards for free for the competition. I found the board to be an excellent product, and the community support for said board to be awesome.
 
-![third image of beyblock](https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_182140266.jpg)
+<img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_182140266.jpg" width="500">
 
 ## Parts
 I will outline the main parts here, though since the design, isn't finalized, you may need a few addtional parts, like screws and such
