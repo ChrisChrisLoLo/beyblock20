@@ -7,7 +7,7 @@ A 20 key modular macropad that can connect with other elements to form a larger 
 Video demo here: https://www.youtube.com/watch?v=Z132qLr78tY
 
 ## Status
-Prototyping phase. No firmware yet, though I plan to play around and it down the road. I need to write some firmware to handle I2C communication between the different elements, as well as add some mounting holes to the knoblin3. As such, I haven't yet had the chance to do testing on this batch of PCBs. If there's enough support for this project, I can work on adding new types of modules as well as refine the current ones. Anyone who wishes to expand on this idea are free to use the source files provided. I would produce these if you're looking to tinker and hack (and you're capable of doing so) at your own risk, though more work needs to be done before these are plug and play.
+Prototyping phase. Firmware is a WIP, though I plan to play around and it down the road. I need to write some firmware to handle I2C communication between the different elements, as well as add some mounting holes to the knoblin3. As such, I haven't yet had the chance to do testing on this batch of PCBs. If there's enough support for this project, I can work on adding new types of modules as well as refine the current ones. Anyone who wishes to expand on this idea are free to use the source files provided. I would produce these if you're looking to tinker and hack (and you're capable of doing so) at your own risk, though more work needs to be done before these are plug and play.
 
 ## Features
 - A highly customizable framework to tailor your macropad to your needs, when you need to
