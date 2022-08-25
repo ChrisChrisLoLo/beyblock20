@@ -22,12 +22,15 @@ Prototyping phase. Firmware is a WIP, though I refine and release it down the ro
 <img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_181439555.jpg" width="500">
 
 ## Design
-This design came out the Seeedstudio SeeeduinoXiao Keyboard Competition. The Seeeduino XIAO is a great, affordable, little microcontroller. I'm a big fan of the USB C port and castellated pins on it. It's biggest tradeoff was that there aren't as many pins on it as a pro-micro, meaning that you have to think outside the box to get enough pins to make a keyboard out of it. I found this constraint to be really fun, since I pushed me to take an I2C "split" keyboard approach. The beyblock20 also draws inspiration from Zack Freedman's [Mirage Keyboard](https://github.com/ZackFreedman/MiRage), particularly with the idea of an unbounded I2C bus.  
-
-Thank you to Seeedstudio for manufacturing these boards for free for the competition. I found the Seeduino Xiao RP2040 board to be an excellent product, and the community support for said board to be awesome.
+This design came out the [Seeedstudio Seeeduino Xiao Keyboard Competition](https://www.seeedstudio.com/seeed-fusion-diy-xiao-mechanical-keyboard-contest.html). The Seeeduino XIAO RP2040 is a great, affordable, little microcontroller. I'm a big fan of the USB C port and castellated pins on it. It's biggest tradeoff was that there aren't as many pins on it as a pro-micro, meaning that you have to think outside the box to get enough pins to make a keyboard out of it. I found this constraint to be really fun, since I pushed me to take an I2C "split" keyboard approach. The beyblock20 also draws inspiration from Zack Freedman's [Mirage Keyboard](https://github.com/ZackFreedman/MiRage), particularly with the idea of an unbounded I2C bus.  
 
 <img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220821_182140266.jpg" width="500">
 
+Thank you to Seeedstudio for manufacturing these boards for free for the competition. I found the [Seeduino Xiao RP2040](https://www.seeedstudio.com/seeed-fusion-diy-xiao-mechanical-keyboard-contest.html) board to be an excellent product, and the community support for said board to be awesome.
+<span>
+<img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220824_113001688.jpg" width="500">
+<img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220824_113234270.jpg" width="500">
+</span>
 ## Parts
 I will outline the main parts here, though since the design, isn't finalized, you may need a few addtional parts, like screws and such
 | Part                      | Count                               | Comment                                                                                                                                                      |
