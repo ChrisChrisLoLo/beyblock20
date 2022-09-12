@@ -48,7 +48,9 @@ if __name__ == '__main__':
         i2c.writeto(0x41, b'T')
         time.sleep(1)
 
-        t_bytes = bytearray(1)
+
+        # up to 64 events * 2 bytes
+        t_bytes = bytearray(64 * 2)
         i2c.readfrom_into(0x41, t_bytes)
         print("Read ", t_bytes)
         i2c.unlock()
