@@ -1,3 +1,6 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode"
+    "makefile.extensionOutputFolder": "./.vscode",
+    "python.analysis.extraPaths": [
+        "./firmware/libs/kmk_firmware"
+    ]
 }

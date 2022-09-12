@@ -5,10 +5,10 @@ helpFunction()
 {
    echo ""
    echo "Usage: $0 deviceName -a parameterA -b parameterB -c parameterC"
-   echo -e "\t deviceName Name of the device, one of [bc,bp]"
-   echo -e "\t -a Description of what is parameterA"
-   echo -e "\t -b Description of what is parameterB"
-   echo -e "\t -c Description of what is parameterC"
+   echo "\t deviceName Name of the device, one of [bc,bp]"
+   echo "\t -a Description of what is parameterA"
+   echo "\t -b Description of what is parameterB"
+   echo "\t -c Description of what is parameterC"
    exit 1 # Exit script after printing help
 }
 
@@ -22,18 +22,19 @@ do
    esac
 done
 
-
-# Copy over libraries
-rsync -cr ./user_libs /Volumes/CIRCUITPY/lib
-
 # Copy over main file
 
 deviceName=$1
 
-if [[ deviceName == "bc" ]]; then
-  rsync -c ./beyblock20_controller/code.py /Volumes/CIRCUITPY/lib/code.py
-elif [[ deviceName == "bp"]]; then
-  rsync -c ./beyblock20_controller/code.py /Volumes/CIRCUITPY/lib/code.py
+if [[ $deviceName == "bc" ]]; then
+  rsync -c ./beyblock20_controller/code.py /Volumes/CIRCUITPY/code.py
+elif [[ $deviceName == "bp" ]]; then
+  rsync -c ./beyblock20_controller/code.py /Volumes/CIRCUITPY/code.py
 else
   helpFunction
 fi
+
+# Copy over libraries
+rsync -cr ./libs/kmk_firmware/kmk /Volumes/CIRCUITPY/
+rsync -cr ./libs/kmk_firmware/boot.py /Volumes/CIRCUITPY/boot.py
+rsync -cr ./libs/user_libs /Volumes/CIRCUITPY/
