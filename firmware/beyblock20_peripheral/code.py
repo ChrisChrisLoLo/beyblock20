@@ -9,28 +9,48 @@ key_matrix = keypad.KeyMatrix(
     row_pins=(board.D10,board.D9,board.D8,board.D7)
 )
 
+import time
+
+while True:
+    arr = []
+    while True:
+        event = key_matrix.events.get()
+        if event:
+            print("got event")
+            arr.append(event.key_number)
+            arr.append(int(event.pressed))
+        else:
+            break
+    print("writing byteArr")
+    byteArr = bytearray([len(arr)]+arr)
+    print(byteArr)
+    time.sleep(2)
+
 while True:
     request = target.request()
     if request is not None:
-        if request.is_read:
+        if not request.is_read:
+
+            r = request.read()
+            if r == "T":
+                print("Read a T")
+
             # Schema of the buffer is a series of 2 byte pairs
             # 1 byte representing key position
             # 1 byte representing 1 or 0. This could be optimized to be 1 bit
             
             byteArr = bytearray(64 * 2)
+            currInd = 0
             while True:
                 event = key_matrix.events.get()
                 if event:
                     print("got event")
-                    byteArr += bytes(event.key_number)
-                    byteArr += bytes(event.pressed)
+                    byteArr[currInd] = bytes(event.key_number)[0]
+                    byteArr[currInd+1] = bytes(int(event.pressed))[0]
+                    currInd += 2
                 else:
                     break
             print("writing byteArr")
             print(byteArr)
             request.write(byteArr)
-        else:
-            r = request.read()
-            if r == "T":
-                print("Read a T")
 

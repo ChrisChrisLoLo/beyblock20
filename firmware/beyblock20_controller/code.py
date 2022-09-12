@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
 
         # up to 64 events * 2 bytes
-        t_bytes = bytearray(64 * 2)
+        t_bytes = bytearray((64 * 2)+1)
         i2c.readfrom_into(0x41, t_bytes)
         print("Read ", t_bytes)
         i2c.unlock()
