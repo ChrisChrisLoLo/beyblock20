@@ -24,4 +24,32 @@ keyboard.keymap = [
 ]
 
 if __name__ == '__main__':
-    keyboard.go()
+    #keyboard.go()
+    # try to run i2c example
+
+    import board
+    import time
+
+
+    import busio
+    # i2c = board.I2C()
+
+    i2c = busio.I2C(board.D5, board.D4)
+
+    while True:
+        i2c.try_lock()
+
+        print(
+            "I2C addresses found:",
+            [hex(device_address) for device_address in i2c.scan()],
+        )
+
+        print("Sending T")
+        i2c.writeto(0x41, b'T')
+        time.sleep(1)
+
+        t_bytes = bytearray(1)
+        i2c.readfrom_into(0x41, t_bytes)
+        print("Read ", t_bytes)
+        i2c.unlock()
+        time.sleep(5)

@@ -29,7 +29,7 @@ deviceName=$1
 if [[ $deviceName == "bc" ]]; then
   rsync -c ./beyblock20_controller/* /Volumes/CIRCUITPY/
 elif [[ $deviceName == "bp" ]]; then
-  rsync -c ./beyblock20_controller/* /Volumes/CIRCUITPY/
+  rsync -c ./beyblock20_peripheral/* /Volumes/CIRCUITPY/
 else
   helpFunction
 fi
