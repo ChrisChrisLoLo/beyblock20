@@ -45,9 +45,10 @@ if __name__ == '__main__':
         )
 
         print("Sending T")
-        i2c.writeto(0x41, b'T')
-        time.sleep(1)
+        # i2c.writeto(0x41, b'T')
+        i2c.writeto(0x3c, b'T')
 
+        time.sleep(1)
 
         # up to 64 events * 2 bytes
         t_bytes = bytearray((64 * 2)+1)
