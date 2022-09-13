@@ -6,8 +6,8 @@ from kmk.kmk_keyboard import KMKKeyboard as _KMKKeyboard
 from kmk.scanners import DiodeOrientation
 from kmk.scanners.keypad import MatrixScanner
 
-SCL=board.D5
-SDA=board.D4
+# SCL=board.D5
+# SDA=board.D4
 
 class KMKKeyboard(_KMKKeyboard):
 
@@ -28,9 +28,15 @@ class KMKKeyboard(_KMKKeyboard):
             max_events=64
         ),  
         I2CScanner(
-            row_count=4,
-            col_count=5,
+            # beyblock20 peripheral
+            key_count=4*5
             i2c=i2c,
             i2c_address=0x41
+        ),
+        I2CScanner(
+            # knoblin3 peripheral
+            key_count=4*5
+            i2c=i2c,
+            i2c_address=0x51
         )
     ]

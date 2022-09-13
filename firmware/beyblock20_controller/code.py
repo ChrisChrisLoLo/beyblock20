@@ -19,6 +19,7 @@ keyboard = KMKKeyboard()
 
 # keyboard.extensions.append(oled_ext) 
 
+
 keyboard.keymap = [
     [
         KC.A,KC.B,KC.C,KC.D,KC.E,
@@ -30,6 +31,10 @@ keyboard.keymap = [
         KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
         KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
         KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
+
+        KC.O,KC.P,
+        KC.N1,KC.N2,
+        KC.A,KC.N9
     ],
 ]
 

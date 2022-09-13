@@ -15,8 +15,7 @@ class I2CScanner(Scanner):
 
     def __init__(
         self,
-        row_count,
-        col_count,
+        key_count,
         i2c,
         i2c_address,
         max_events=64,
@@ -34,25 +33,10 @@ class I2CScanner(Scanner):
         :param hex i2c_address: The address of the peripheral.
 
         """
-        # self._row_digitalinouts = []
-        # for row_pin in row_pins:
-        #     row_dio = digitalio.DigitalInOut(row_pin)
-        #     row_dio.switch_to_input(
-        #         pull=(digitalio.Pull.UP if columns_to_anodes else digitalio.Pull.DOWN)
-        #     )
-        #     self._row_digitalinouts.append(row_dio)
 
-        # self._column_digitalinouts = []
-        # for column_pin in column_pins:
-        #     col_dio = digitalio.DigitalInOut(column_pin)
-        #     col_dio.switch_to_input(
-        #         pull=(digitalio.Pull.UP if columns_to_anodes else digitalio.Pull.DOWN)
-        #     )
-        #     self._column_digitalinouts.append(col_dio)
-        self.row_count = row_count
-        self.col_count = col_count
-        self._currently_pressed = [False] * col_count * row_count
-        self._previously_pressed = [False] * col_count * row_count
+        self.key_count = key_count
+        self._currently_pressed = [False] * key_count
+        self._previously_pressed = [False] * key_count
         
         self.i2c = i2c
         self.i2c_address = i2c_address
@@ -66,7 +50,7 @@ class I2CScanner(Scanner):
     @property
     def key_count(self):
         """The number of keys that are being scanned. (read-only)"""
-        return self.row_count * self.col_count
+        return self.key_count
 
     def scan_for_changes(self):
 
@@ -78,16 +62,16 @@ class I2CScanner(Scanner):
             #     return
 
             self.i2c.try_lock()
-            # print(
-            #     "I2C addresses found:",
-            #     [hex(device_address) for device_address in self.i2c.scan()],
-            # )
+            print(
+                "I2C addresses found:",
+                [hex(device_address) for device_address in self.i2c.scan()],
+            )
 
             # print("Sending T")
             # i2c.writeto(0x41, b'T')
             # i2c.writeto(0x3c, b'T')
 
-            # self.i2c.writeto(self.i2c_address, b'T')
+            self.i2c.writeto(self.i2c_address, b'T')
 
             # up to 64 events * 2 bytes
             self.i2c.readfrom_into(self.i2c_address, received_bytes)
@@ -106,10 +90,11 @@ class I2CScanner(Scanner):
             else:
                 raise
 
+
         # checks if event
         event_not_null = int(received_bytes[0])
 
-        if event_not_null:
+        if event_not_null == 1:
             print("Read ", received_bytes)
             return KeyEvent(
                 key_number=int(received_bytes[1])+self.offset,

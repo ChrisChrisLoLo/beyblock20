@@ -27,14 +27,26 @@ done
 deviceName=$1
 
 if [[ $deviceName == "bc" ]]; then
-  rsync -c ./beyblock20_controller/* /Volumes/CIRCUITPY/
+  # rsync -c ./beyblock20_controller/* /Volumes/CIRCUITPY/
+  # # Copy over libraries
+  # rsync -cr ./libs/kmk_firmware/kmk /Volumes/CIRCUITPY/
+  # rsync -cr ./libs/kmk_firmware/boot.py /Volumes/CIRCUITPY/boot.py
+  # rsync -cr ./libs/user_libs /Volumes/CIRCUITPY/
+  # rsync -cr ./libs/adafruit* /Volumes/CIRCUITPY/
+
+  rsync -c ./beyblock20_controller/* /Volumes/"NO NAME"/
   # Copy over libraries
-  rsync -cr ./libs/kmk_firmware/kmk /Volumes/CIRCUITPY/
-  rsync -cr ./libs/kmk_firmware/boot.py /Volumes/CIRCUITPY/boot.py
-  rsync -cr ./libs/user_libs /Volumes/CIRCUITPY/
-  rsync -cr ./libs/adafruit* /Volumes/CIRCUITPY/
+  rsync -cr ./libs/kmk_firmware/kmk /Volumes/"NO NAME"/
+  rsync -cr ./libs/kmk_firmware/boot.py /Volumes/"NO NAME"/boot.py
+  rsync -cr ./libs/user_libs /Volumes/"NO NAME"/
+  rsync -cr ./libs/adafruit* /Volumes/"NO NAME"/
 elif [[ $deviceName == "bp" ]]; then
   rsync -c ./beyblock20_peripheral/* /Volumes/CIRCUITPY/
+elif [[ $deviceName == "kp" ]]; then
+  rsync -c ./knoblin3_peripheral/* /Volumes/CIRCUITPY/
+elif [[ $deviceName == "rst" ]]; then
+  # file used to reset device
+  openssl rand -base64 12 > /Volumes/CIRCUITPY/rst
 else
   helpFunction
 fi
