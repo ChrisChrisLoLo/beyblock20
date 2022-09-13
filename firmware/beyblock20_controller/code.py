@@ -25,12 +25,11 @@ keyboard.keymap = [
 
 if __name__ == '__main__':
     keyboard.go()
-    
+
     # try to run i2c example
 
     # import board
     # import time
-
 
     # import busio
     # # i2c = board.I2C()

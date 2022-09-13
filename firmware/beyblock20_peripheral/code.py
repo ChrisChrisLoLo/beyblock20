@@ -16,16 +16,17 @@ while True:
         # 1 byte representing key position
         # 1 byte representing 1 or 0. This could be optimized to be 1 bit
         if request.is_read:
-            eventsArr = []
-            while True:
-                event = key_matrix.events.get()
-                if event:
-                    eventsArr.append(event.key_number)
-                    eventsArr.append(event.pressed)
-                else:
-                    break
-            print("writing byteArr")
-            byteArr = bytearray([len(eventsArr)]+eventsArr)
+            not_null = 0
+            key_number = 0
+            pressed = 0
+            
+            event = key_matrix.events.get()
+            if event:
+                not_null = 1
+                key_number = event.key_number
+                pressed = event.pressed
+                    
+            byteArr = bytearray([not_null,key_number,pressed])
             # print(byteArr)
             request.write(byteArr)
         else:

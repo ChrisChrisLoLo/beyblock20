@@ -1,6 +1,7 @@
 from keypad_python_impl import EventQueue
 
 from kmk.scanners.keypad import Scanner
+from keypad import Event as KeyEvent
 
 
 class I2CScanner(Scanner):
@@ -89,22 +90,17 @@ class I2CScanner(Scanner):
         self.i2c.writeto(self.i2c_address, b'T')
 
         # up to 64 events * 2 bytes
-        received_bytes = bytearray((64 * 2)+1)
+        received_bytes = bytearray(3)
         self.i2c.readfrom_into(self.i2c_address, received_bytes)
-        # print("Read ", received_bytes)
-
-        bytelen = int(received_bytes[0])
-
-        if bytelen != 0:
-            print("Read ", received_bytes)
-
-
-        # record events from I2C 
-        for i in range(1,bytelen,2):
-            print("got event ", int(received_bytes[i]), int(received_bytes[i+1]))
-            self._events.keypad_eventqueue_record(int(received_bytes[i]), int(received_bytes[i+1]))
-
         self.i2c.unlock()
+
+        # checks if event
+        event_not_null = int(received_bytes[0])
+
+        if event_not_null:
+            print("Read ", received_bytes)
+            return KeyEvent(int(received_bytes[1]), int(received_bytes[2]))
+            #self._events.keypad_eventqueue_record(int(received_bytes[1]), int(received_bytes[2]))
 
 
         # return 1st event from scan, even if it's None
