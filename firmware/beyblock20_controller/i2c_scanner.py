@@ -58,7 +58,7 @@ class I2CScanner(Scanner):
         self.i2c = i2c
         self.i2c_address = i2c_address
 
-
+        self.has_warned_i2c_not_found = False
 
         # super().__init__(interval, max_events, self._keypad_keymatrix_scan)
 
@@ -75,24 +75,38 @@ class I2CScanner(Scanner):
         backlog_event = self._events.get()
         if backlog_event:
             return backlog_event
-            
-
-        self.i2c.try_lock()
-        # print(
-        #     "I2C addresses found:",
-        #     [hex(device_address) for device_address in self.i2c.scan()],
-        # )
-
-        # print("Sending T")
-        # i2c.writeto(0x41, b'T')
-        # i2c.writeto(0x3c, b'T')
-
-        # self.i2c.writeto(self.i2c_address, b'T')
-
-        # up to 64 events * 2 bytes
+        
         received_bytes = bytearray(3)
-        self.i2c.readfrom_into(self.i2c_address, received_bytes)
-        self.i2c.unlock()
+
+        try:
+            self.i2c.try_lock()
+            # print(
+            #     "I2C addresses found:",
+            #     [hex(device_address) for device_address in self.i2c.scan()],
+            # )
+
+            # print("Sending T")
+            # i2c.writeto(0x41, b'T')
+            # i2c.writeto(0x3c, b'T')
+
+            # self.i2c.writeto(self.i2c_address, b'T')
+
+            # up to 64 events * 2 bytes
+            self.i2c.readfrom_into(self.i2c_address, received_bytes)
+            self.i2c.unlock()
+            
+            # reset warning on success
+            if self.has_warned_i2c_not_found:
+                self.has_warned_i2c_not_found = False
+
+        except OSError as e:
+            if e.errno == 19:
+                # No device found, warn once and pass
+                if not self.has_warned_i2c_not_found:
+                    print("WARNING: I2C Device no longer found!")
+                    self.has_warned_i2c_not_found = True
+            else:
+                raise
 
         # checks if event
         event_not_null = int(received_bytes[0])
@@ -104,7 +118,6 @@ class I2CScanner(Scanner):
                 pressed=int(received_bytes[2])
             )
             #self._events.keypad_eventqueue_record(int(received_bytes[1]), int(received_bytes[2]))
-
 
         # return 1st event from scan, even if it's None
         # return self._events.get()
