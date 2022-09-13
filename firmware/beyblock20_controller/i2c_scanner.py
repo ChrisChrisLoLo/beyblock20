@@ -87,7 +87,7 @@ class I2CScanner(Scanner):
         # i2c.writeto(0x41, b'T')
         # i2c.writeto(0x3c, b'T')
 
-        self.i2c.writeto(self.i2c_address, b'T')
+        # self.i2c.writeto(self.i2c_address, b'T')
 
         # up to 64 events * 2 bytes
         received_bytes = bytearray(3)
@@ -99,7 +99,10 @@ class I2CScanner(Scanner):
 
         if event_not_null:
             print("Read ", received_bytes)
-            return KeyEvent(int(received_bytes[1]), int(received_bytes[2]))
+            return KeyEvent(
+                key_number=int(received_bytes[1])+self.offset,
+                pressed=int(received_bytes[2])
+            )
             #self._events.keypad_eventqueue_record(int(received_bytes[1]), int(received_bytes[2]))
 
 

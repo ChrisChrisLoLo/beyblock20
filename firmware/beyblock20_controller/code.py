@@ -16,10 +16,10 @@ keyboard.keymap = [
         KC.K,KC.L,KC.M,KC.N,KC.O,
         KC.P,KC.Q,KC.R,KC.S,KC.T,
 
-        KC.A,KC.B,KC.C,KC.D,KC.E,
-        KC.F,KC.G,KC.H,KC.I,KC.J,
-        KC.K,KC.L,KC.M,KC.N,KC.O,
-        KC.P,KC.Q,KC.R,KC.S,KC.T
+        KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
+        KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
+        KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
+        KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
     ],
 ]
 
