@@ -1,11 +1,9 @@
-import keypad
-from keypad import _KeysBase
+from keypad_python_impl import EventQueue
 
-from kmk.scanners import DiodeOrientation
-from kmk.scanners.keypad import KeypadScanner
+from kmk.scanners.keypad import Scanner
 
 
-class MatrixScanner(KeypadScanner):
+class I2CScanner(Scanner):
     '''
     Row/Column matrix using the CircuitPython 7 keypad scanner.
 
@@ -16,34 +14,10 @@ class MatrixScanner(KeypadScanner):
 
     def __init__(
         self,
-        row_pins,
-        column_pins,
-        *,
-        columns_to_anodes=DiodeOrientation.COL2ROW,
-        interval=0.02,
-        max_events=64,
-    ):
-        self.keypad = keypad.KeyMatrix(
-            row_pins,
-            column_pins,
-            columns_to_anodes=(columns_to_anodes == DiodeOrientation.COL2ROW),
-            interval=interval,
-            max_events=max_events,
-        )
-        super().__init__()
-
-
-class I2CKeyMatrix(_KeysBase):
-    """
-    Implements a keypad interface that makes I2C requests to peripherals.
-
-    """
-    # pylint: disable=too-many-arguments
-    def __init__(
-        self,
         row_count,
         col_count,
-        interval=0.02,
+        i2c,
+        i2c_address,
         max_events=64,
     ):
         """
@@ -55,6 +29,9 @@ class I2CKeyMatrix(_KeysBase):
 
         :param int row_pins_count: The count of pins attached to the rows.
         :param int column_pins_count: The count of pins attached to the colums.
+        :param i2c: i2c object.
+        :param hex i2c_address: The address of the peripheral.
+
         """
         # self._row_digitalinouts = []
         # for row_pin in row_pins:
@@ -73,57 +50,82 @@ class I2CKeyMatrix(_KeysBase):
         #     self._column_digitalinouts.append(col_dio)
         self.row_count = row_count
         self.col_count = col_count
-        self._currently_pressed = [False] * len(col_count) * len(row_count)
-        self._previously_pressed = [False] * len(col_count) * len(row_count)
+        self._currently_pressed = [False] * col_count * row_count
+        self._previously_pressed = [False] * col_count * row_count
+        self._events = EventQueue(max_events)
+        
+        self.i2c = i2c
+        self.i2c_address = i2c_address
 
-        super().__init__(interval, max_events, self._keypad_keymatrix_scan)
+
+
+        # super().__init__(interval, max_events, self._keypad_keymatrix_scan)
 
     # pylint: enable=too-many-arguments
 
     @property
     def key_count(self):
         """The number of keys that are being scanned. (read-only)"""
-        return len(self.row_count) * len(self.col_count)
+        return self.row_count * self.col_count
 
-    def deinit(self):
-        """Stop scanning and release the pins."""
-        super().deinit()
-        for row_dio in self._row_digitalinouts:
-            row_dio.deinit()
-        for col_dio in self._column_digitalinouts:
-            col_dio.deinit()
+    def scan_for_changes(self):
 
-    def reset(self):
-        """
-        Reset the internal state of the scanner to assume that all keys are now released.
-        Any key that is already pressed at the time of this call will therefore immediately cause
-        a new key-pressed event to occur.
-        """
-        self._previously_pressed = self._currently_pressed = [False] * self.key_count
+        # Return event if already in the backlog
+        backlog_event = self._events.get()
+        if self._events.get():
+            return backlog_event
+            
 
-    def _row_column_to_key_number(self, row, column):
-        return (row * self.col_count) + column
+        self.i2c.try_lock()
+        print(
+            "I2C addresses found:",
+            [hex(device_address) for device_address in self.i2c.scan()],
+        )
 
-    def _keypad_keymatrix_scan(self):
-        for row, row_dio in enumerate(self._row_digitalinouts):
-            row_dio.switch_to_output(
-                value=(not self._columns_to_anodes),
-                drive_mode=digitalio.DriveMode.PUSH_PULL,
-            )
-            for col, col_dio in enumerate(self._column_digitalinouts):
-                key_number = self._row_column_to_key_number(row, col)
-                self._previously_pressed[key_number] = self._currently_pressed[
-                    key_number
-                ]
-                current = col_dio.value != self._columns_to_anodes
-                self._currently_pressed[key_number] = current
-                if self._previously_pressed[key_number] != current:
-                    self._events.keypad_eventqueue_record(key_number, current)
-            row_dio.value = self._columns_to_anodes
-            row_dio.switch_to_input(
-                pull=(
-                    digitalio.Pull.UP
-                    if self._columns_to_anodes
-                    else digitalio.Pull.DOWN
-                )
-            )
+        print("Sending T")
+        # i2c.writeto(0x41, b'T')
+        # i2c.writeto(0x3c, b'T')
+
+        self.i2c.writeto(self.i2c_address, b'T')
+
+        # up to 64 events * 2 bytes
+        received_bytes = bytearray((64 * 2)+1)
+        self.i2c.readfrom_into(self.i2c_address, received_bytes)
+        print("Read ", received_bytes)
+
+        bytelen = int(received_bytes[0])
+
+        # record events from I2C 
+        for i in range(1,bytelen,2):
+            self._events.keypad_eventqueue_record(int(received_bytes[i]), int(received_bytes[i+1]))
+
+        self.i2c.unlock()
+
+        # return 1st event from scan, even if it's None
+        return self._events.get()
+
+# class I2CMatrix():
+#     """
+#     Implements a keypad interface that makes I2C requests to peripherals.
+
+#     """
+#     # pylint: disable=too-many-arguments
+
+
+#     def deinit(self):
+#         """Stop scanning and release the pins."""
+#         super().deinit()
+
+#     def reset(self):
+#         """
+#         Reset the internal state of the scanner to assume that all keys are now released.
+#         Any key that is already pressed at the time of this call will therefore immediately cause
+#         a new key-pressed event to occur.
+#         """
+#         self._previously_pressed = self._currently_pressed = [False] * self.key_count
+
+#     def _row_column_to_key_number(self, row, column):
+#         return (row * self.col_count) + column
+
+    
+
