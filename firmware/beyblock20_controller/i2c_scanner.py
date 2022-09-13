@@ -72,17 +72,17 @@ class I2CScanner(Scanner):
 
         # Return event if already in the backlog
         backlog_event = self._events.get()
-        if self._events.get():
+        if backlog_event:
             return backlog_event
             
 
         self.i2c.try_lock()
-        print(
-            "I2C addresses found:",
-            [hex(device_address) for device_address in self.i2c.scan()],
-        )
+        # print(
+        #     "I2C addresses found:",
+        #     [hex(device_address) for device_address in self.i2c.scan()],
+        # )
 
-        print("Sending T")
+        # print("Sending T")
         # i2c.writeto(0x41, b'T')
         # i2c.writeto(0x3c, b'T')
 
@@ -91,18 +91,24 @@ class I2CScanner(Scanner):
         # up to 64 events * 2 bytes
         received_bytes = bytearray((64 * 2)+1)
         self.i2c.readfrom_into(self.i2c_address, received_bytes)
-        print("Read ", received_bytes)
+        # print("Read ", received_bytes)
 
         bytelen = int(received_bytes[0])
 
+        if bytelen != 0:
+            print("Read ", received_bytes)
+
+
         # record events from I2C 
         for i in range(1,bytelen,2):
+            print("got event ", int(received_bytes[i]), int(received_bytes[i+1]))
             self._events.keypad_eventqueue_record(int(received_bytes[i]), int(received_bytes[i+1]))
 
         self.i2c.unlock()
 
+
         # return 1st event from scan, even if it's None
-        return self._events.get()
+        # return self._events.get()
 
 # class I2CMatrix():
 #     """
