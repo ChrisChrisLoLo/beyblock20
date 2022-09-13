@@ -28,13 +28,15 @@ deviceName=$1
 
 if [[ $deviceName == "bc" ]]; then
   rsync -c ./beyblock20_controller/* /Volumes/CIRCUITPY/
+  # Copy over libraries
+  rsync -cr ./libs/kmk_firmware/kmk /Volumes/CIRCUITPY/
+  rsync -cr ./libs/kmk_firmware/boot.py /Volumes/CIRCUITPY/boot.py
+  rsync -cr ./libs/user_libs /Volumes/CIRCUITPY/
+  rsync -cr ./libs/adafruit* /Volumes/CIRCUITPY/
 elif [[ $deviceName == "bp" ]]; then
   rsync -c ./beyblock20_peripheral/* /Volumes/CIRCUITPY/
 else
   helpFunction
 fi
 
-# Copy over libraries
-rsync -cr ./libs/kmk_firmware/kmk /Volumes/CIRCUITPY/
-rsync -cr ./libs/kmk_firmware/boot.py /Volumes/CIRCUITPY/boot.py
-rsync -cr ./libs/user_libs /Volumes/CIRCUITPY/
+

@@ -10,6 +10,6 @@
 [submodule "pcb/libs/Keebio-Parts.pretty"]
 	path = pcb/libs/Keebio-Parts.pretty
 	url = https://github.com/keebio/Keebio-Parts.pretty
-[submodule "firmware/user_lib/kmk_firmware"]
-	path = firmware/user_lib/kmk_firmware
+[submodule "firmware/libs/kmk_firmware"]
+	path = firmware/libs/kmk_firmware
 	url = https://github.com/KMKfw/kmk_firmware.git

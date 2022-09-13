@@ -53,7 +53,6 @@ class I2CScanner(Scanner):
         self.col_count = col_count
         self._currently_pressed = [False] * col_count * row_count
         self._previously_pressed = [False] * col_count * row_count
-        self._events = EventQueue(max_events)
         
         self.i2c = i2c
         self.i2c_address = i2c_address
@@ -71,14 +70,13 @@ class I2CScanner(Scanner):
 
     def scan_for_changes(self):
 
-        # Return event if already in the backlog
-        backlog_event = self._events.get()
-        if backlog_event:
-            return backlog_event
-        
         received_bytes = bytearray(3)
 
         try:
+            # If we cannot lock this time around, let other scanners run in meantime
+            # if not self.i2c.try_lock():
+            #     return
+
             self.i2c.try_lock()
             # print(
             #     "I2C addresses found:",
@@ -117,33 +115,3 @@ class I2CScanner(Scanner):
                 key_number=int(received_bytes[1])+self.offset,
                 pressed=int(received_bytes[2])
             )
-            #self._events.keypad_eventqueue_record(int(received_bytes[1]), int(received_bytes[2]))
-
-        # return 1st event from scan, even if it's None
-        # return self._events.get()
-
-# class I2CMatrix():
-#     """
-#     Implements a keypad interface that makes I2C requests to peripherals.
-
-#     """
-#     # pylint: disable=too-many-arguments
-
-
-#     def deinit(self):
-#         """Stop scanning and release the pins."""
-#         super().deinit()
-
-#     def reset(self):
-#         """
-#         Reset the internal state of the scanner to assume that all keys are now released.
-#         Any key that is already pressed at the time of this call will therefore immediately cause
-#         a new key-pressed event to occur.
-#         """
-#         self._previously_pressed = self._currently_pressed = [False] * self.key_count
-
-#     def _row_column_to_key_number(self, row, column):
-#         return (row * self.col_count) + column
-
-    
-
