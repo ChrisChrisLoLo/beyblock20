@@ -2,22 +2,23 @@ print("Starting")
 
 from kb import KMKKeyboard
 from kmk.keys import KC
-# from kmk.extensions.peg_oled_display import Oled,OledDisplayMode,OledReactionType,OledData
+from i2c_oled_display import Oled,OledDisplayMode,OledReactionType,OledData
 
 keyboard = KMKKeyboard()
 
-# oled_ext = Oled(
-#     OledData(
-#         corner_one={0:OledReactionType.STATIC,1:["layer"]},
-#         corner_two={0:OledReactionType.LAYER,1:["1","2","3","4"]},
-#         corner_three={0:OledReactionType.LAYER,1:["base","raise","lower","adjust"]},
-#         corner_four={0:OledReactionType.LAYER,1:["qwerty","nums","shifted","leds"]}
-#     ),
-#     toDisplay=OledDisplayMode.TXT,
-#     flip=False
-#     )
+oled_ext = Oled(
+    keyboard.i2c,
+    OledData(
+        corner_one={0:OledReactionType.STATIC,1:["layer"]},
+        corner_two={0:OledReactionType.LAYER,1:["1","2","3","4"]},
+        corner_three={0:OledReactionType.LAYER,1:["base","raise","lower","adjust"]},
+        corner_four={0:OledReactionType.LAYER,1:["qwerty","nums","shifted","leds"]}
+    ),
+    toDisplay=OledDisplayMode.TXT,
+    flip=False
+    )
 
-# keyboard.extensions.append(oled_ext) 
+keyboard.extensions = [oled_ext] 
 
 
 keyboard.keymap = [

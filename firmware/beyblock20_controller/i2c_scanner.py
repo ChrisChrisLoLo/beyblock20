@@ -43,6 +43,8 @@ class I2CScanner(Scanner):
 
         self.has_warned_i2c_not_found = False
 
+        #self._curr_i2c_addrs = []
+
         # super().__init__(interval, max_events, self._keypad_keymatrix_scan)
 
     # pylint: enable=too-many-arguments
@@ -62,10 +64,10 @@ class I2CScanner(Scanner):
             #     return
 
             self.i2c.try_lock()
-            print(
-                "I2C addresses found:",
-                [hex(device_address) for device_address in self.i2c.scan()],
-            )
+            # print(
+            #     "I2C addresses found:",
+            #     [hex(device_address) for device_address in self.i2c.scan()],
+            # )
 
             # print("Sending T")
             # i2c.writeto(0x41, b'T')

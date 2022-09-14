@@ -6,9 +6,6 @@ from kmk.kmk_keyboard import KMKKeyboard as _KMKKeyboard
 from kmk.scanners import DiodeOrientation
 from kmk.scanners.keypad import MatrixScanner
 
-# SCL=board.D5
-# SDA=board.D4
-
 class KMKKeyboard(_KMKKeyboard):
 
     col_pins = (board.D6,board.D3,board.D2,board.D1,board.D0)
