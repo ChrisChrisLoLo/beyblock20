@@ -33,15 +33,23 @@ cg_swap = CgSwap()
 modtap = ModTap()
 mouse_keys = MouseKeys()
 
-keyboard.modules = [layers_ext, cg_swap, modtap, mouse_keys, tapdance]
+keyboard.modules = [layers_ext, cg_swap, modtap, mouse_keys]
 
 # Cleaner key names
 _______ = KC.TRNS
 XXXXXXX = KC.NO
 
-LOWER = 1
-RAISE = 2
-LOWER_RAISE = 3
+
+STANDARD = 0
+# layer where GUI is swapped.
+# We use this instead of the GUI swap feature
+# as the swap doesn't seem to work with ModTap
+GUI_SWAP = 1 
+
+LOWER = 2
+RAISE = 3
+LOWER_RAISE = 4
+
 
 keyboard.keymap = [
     [
@@ -60,15 +68,30 @@ keyboard.keymap = [
         KC.AUDIO_VOL_DOWN,KC.AUDIO_VOL_UP,
     ],
     [
+        KC.Q,KC.W,KC.E,KC.R,KC.T,
+        KC.A,KC.S,KC.D,KC.F,KC.G,
+        KC.Z,KC.X,KC.C,KC.V,KC.B,
+        KC.ESC,KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE),
+
+        KC.Y,KC.U,KC.I,KC.O,KC.P,
+        KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
+        KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
+        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT, prefer_hold=False),XXXXXXX,KC.LALT,KC.ENTER,
+
+        KC.MS_LEFT,KC.MS_RIGHT,
+        KC.MW_UP,KC.MW_DOWN,
+        KC.AUDIO_VOL_DOWN,KC.AUDIO_VOL_UP,
+    ],
+    [
         KC.EXCLAIM,KC.AT,KC.HASH,KC.DOLLAR,KC.PERCENT,
         KC.TILDE,KC.UNDERSCORE,KC.PLUS,KC.LEFT_CURLY_BRACE,KC.RIGHT_CURLY_BRACE,
         KC.PIPE,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,
+        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 
         KC.CIRCUMFLEX,KC.AMPERSAND,KC.ASTERISK,KC.LEFT_PAREN,KC.RIGHT_PAREN,
         KC.LEFT,KC.DOWN,KC.UP,KC.RIGHT,KC.DOUBLE_QUOTE,
         _______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,
+        KC.MO(LOWER_RAISE),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 
         _______,_______,
         _______,_______,
@@ -78,12 +101,12 @@ keyboard.keymap = [
         KC.N1,KC.N2,KC.N3,KC.N4,KC.N5,
         KC.GRAVE,KC.MINUS,KC.EQUAL,KC.LBRACKET,KC.RBRACKET,
         KC.BSLASH,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,
+        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC.MO(LOWER_RAISE),
 
         KC.N6,KC.N7,KC.N8,KC.N9,KC.N0,
         KC.LEFT,KC.DOWN,KC.UP,KC.RIGHT,KC.QUOTE,
         _______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,
+        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 
         _______,_______,
         _______,_______,
@@ -93,12 +116,12 @@ keyboard.keymap = [
         KC.RESET,_______,_______,_______,_______,
         KC.F1,KC.F2,KC.F3,KC.F4,KC.F5,
         KC.F7,KC.F8,KC.F9,KC.F10,KC.F11,
-        _______,_______,_______,_______,_______,
+        XXXXXXX,KC.DF(GUI_SWAP),XXXXXXX,KC.DF(STANDARD),XXXXXXX,
 
         _______,_______,_______,_______,KC.DEL,
         KC.F6,KC.AUDIO_VOL_DOWN,KC.AUDIO_VOL_UP,_______,_______,
         KC.F12,_______,_______,_______,_______,
-        _______,KC.CG_SWAP,_______,KC.CG_SWAP,_______,
+        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 
         _______,_______,
         _______,_______,
