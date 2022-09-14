@@ -10,6 +10,8 @@ from kmk.modules.tapdance import TapDance
 from kmk.modules.layers import Layers
 from kmk.modules.mouse_keys import MouseKeys
 
+TAP_TIME = 200
+
 keyboard = KMKKeyboard()
 
 oled_ext = Oled(
@@ -33,6 +35,8 @@ cg_swap = CgSwap()
 modtap = ModTap()
 mouse_keys = MouseKeys()
 
+modtap.tap_time = TAP_TIME
+
 keyboard.modules = [layers_ext, cg_swap, modtap, mouse_keys]
 
 # Cleaner key names
@@ -48,6 +52,8 @@ GUI_SWAP = 1
 
 LOWER = 2
 RAISE = 3
+
+# TODO: look into KMK bug where pressing KC.LT(XX) and then pressing KC.MO(XX) breaks everything
 LOWER_RAISE = 4
 
 
@@ -56,12 +62,12 @@ keyboard.keymap = [
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.ESC,KC.LGUI,XXXXXXX,KC.MT(KC.TAB, KC.LCTRL),KC.LT(LOWER, KC.SPACE),
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LGUI,XXXXXXX,KC.MT(KC.TAB, KC.LCTRL),KC.LT(LOWER, KC.SPACE, tap_time=TAP_TIME),
 
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
         KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
-        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT, prefer_hold=False),XXXXXXX,KC.LALT,KC.ENTER,
+        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT, prefer_hold=True),XXXXXXX,KC.LALT,KC.ENTER,
 
         KC.MS_LEFT,KC.MS_RIGHT,
         KC.MW_UP,KC.MW_DOWN,
@@ -71,12 +77,12 @@ keyboard.keymap = [
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.ESC,KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE),
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE, tap_time=TAP_TIME),
 
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
         KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
-        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT, prefer_hold=False),XXXXXXX,KC.LALT,KC.ENTER,
+        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT, prefer_hold=True),XXXXXXX,KC.LALT,KC.ENTER,
 
         KC.MS_LEFT,KC.MS_RIGHT,
         KC.MW_UP,KC.MW_DOWN,
