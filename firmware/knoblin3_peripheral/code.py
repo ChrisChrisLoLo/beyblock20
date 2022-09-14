@@ -6,7 +6,7 @@ from i2ctarget import I2CTarget
 encoders = [
     RotaryioEncoder(board.D10,board.D9,0),
     RotaryioEncoder(board.D8,board.D7,2),
-    RotaryioEncoder(board.D10,board.D9,4),
+    RotaryioEncoder(board.D0,board.D1,4),
 ]
 
 # TODO: Only one encoder can be turned at a time
@@ -29,7 +29,7 @@ with I2CTarget(board.D5, board.D4, [0x51]) as device:
                         not_null = 1
                         key_number = event.key_number
                         pressed = event.pressed
-                    break                    
+                        break                    
                         
                 byteArr = bytearray([not_null,key_number,pressed])
                 print(byteArr)

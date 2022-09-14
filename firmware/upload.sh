@@ -27,6 +27,8 @@ done
 deviceName=$1
 
 if [[ $deviceName == "bc" ]]; then
+  #driveName="           "
+  driveName="NO NAME"
   # rsync -c ./beyblock20_controller/* /Volumes/CIRCUITPY/
   # # Copy over libraries
   # rsync -cr ./libs/kmk_firmware/kmk /Volumes/CIRCUITPY/
@@ -34,12 +36,12 @@ if [[ $deviceName == "bc" ]]; then
   # rsync -cr ./libs/user_libs /Volumes/CIRCUITPY/
   # rsync -cr ./libs/adafruit* /Volumes/CIRCUITPY/
 
-  rsync -c ./beyblock20_controller/* /Volumes/"NO NAME"/
+  rsync -c ./beyblock20_controller/* /Volumes/"$driveName"/
   # Copy over libraries
-  rsync -cr ./libs/kmk_firmware/kmk /Volumes/"NO NAME"/
-  rsync -cr ./libs/kmk_firmware/boot.py /Volumes/"NO NAME"/boot.py
-  rsync -cr ./libs/user_libs /Volumes/"NO NAME"/
-  rsync -cr ./libs/adafruit* /Volumes/"NO NAME"/
+  rsync -cr ./libs/kmk_firmware/kmk /Volumes/"$driveName"/
+  rsync -cr ./libs/kmk_firmware/boot.py /Volumes/"$driveName"/boot.py
+  rsync -cr ./libs/user_libs /Volumes/"$driveName"/
+  rsync -cr ./libs/adafruit* /Volumes/"$driveName"/
 elif [[ $deviceName == "bp" ]]; then
   rsync -c ./beyblock20_peripheral/* /Volumes/CIRCUITPY/
 elif [[ $deviceName == "kp" ]]; then

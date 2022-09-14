@@ -34,7 +34,7 @@ class I2CScanner(Scanner):
 
         """
 
-        self.key_count = key_count
+        self._key_count = key_count
         self._currently_pressed = [False] * key_count
         self._previously_pressed = [False] * key_count
         
@@ -50,7 +50,7 @@ class I2CScanner(Scanner):
     @property
     def key_count(self):
         """The number of keys that are being scanned. (read-only)"""
-        return self.key_count
+        return self._key_count
 
     def scan_for_changes(self):
 
