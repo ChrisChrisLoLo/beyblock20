@@ -1,7 +1,6 @@
-from keypad_python_impl import EventQueue
-
 from kmk.scanners.keypad import Scanner
 from keypad import Event as KeyEvent
+from adafruit_bus_device.i2c_device import I2CDevice
 
 
 class I2CScanner(Scanner):
@@ -38,8 +37,8 @@ class I2CScanner(Scanner):
         self._currently_pressed = [False] * key_count
         self._previously_pressed = [False] * key_count
         
-        self.i2c = i2c
-        self.i2c_address = i2c_address
+        self.i2c = i2c # Should only be used for scanning 
+        self.i2c_device = I2CDevice(i2c, i2c_address)
 
         self.has_warned_i2c_not_found = False
 
@@ -62,8 +61,6 @@ class I2CScanner(Scanner):
             # If we cannot lock this time around, let other scanners run in meantime
             # if not self.i2c.try_lock():
             #     return
-
-            self.i2c.try_lock()
             # print(
             #     "I2C addresses found:",
             #     [hex(device_address) for device_address in self.i2c.scan()],
@@ -72,12 +69,12 @@ class I2CScanner(Scanner):
             # print("Sending T")
             # i2c.writeto(0x41, b'T')
             # i2c.writeto(0x3c, b'T')
-
-            self.i2c.writeto(self.i2c_address, b'T')
-
-            # up to 64 events * 2 bytes
-            self.i2c.readfrom_into(self.i2c_address, received_bytes)
-            self.i2c.unlock()
+            with self.i2c_device:
+                self.i2c_device.write(b'T')
+            
+            with self.i2c_device:
+                # up to 64 events * 2 bytes
+                self.i2c_device.readinto(received_bytes)
             
             # reset warning on success
             if self.has_warned_i2c_not_found:
