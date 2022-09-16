@@ -1,5 +1,7 @@
 import board
 import keypad
+import microcontroller
+import watchdog
 from i2ctarget import I2CTarget
 
 key_matrix = keypad.KeyMatrix(
@@ -37,6 +39,12 @@ key_matrix = keypad.KeyMatrix(
 
 with I2CTarget(board.D5, board.D4, [0x41]) as device:
     print("Starting peripheral")
+
+    # init watchdog to prevent I2C hangups on the peripherals end
+    watchdog_timer = microcontroller.watchdog
+    watchdog_timer.timeout = 2
+    watchdog_timer.mode = watchdog.WatchDogMode.RESET 
+    
     while True:
         request = device.request()
         if not request:
@@ -56,8 +64,8 @@ with I2CTarget(board.D5, board.D4, [0x41]) as device:
                 byteArr = bytearray([not_null,key_number,pressed])
                 print(byteArr)
                 request.write(byteArr)
+                watchdog_timer.feed()
             else:
                 r = request.read()
-                # regardless of request, process key matrix
                 if r == "T":
                     print("Read a T")
