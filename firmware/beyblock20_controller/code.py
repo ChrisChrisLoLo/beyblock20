@@ -10,9 +10,11 @@ from kmk.modules.tapdance import TapDance
 from kmk.modules.layers import Layers
 from kmk.modules.mouse_keys import MouseKeys
 
-TAP_TIME = 200
+TAP_TIME = 300
 
 keyboard = KMKKeyboard()
+
+# keyboard.debug_enabled = True
 
 # oled_ext = Oled(
 #     keyboard.i2c,
@@ -66,12 +68,12 @@ keyboard.keymap = [
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LGUI,XXXXXXX,KC.MT(KC.TAB, KC.LCTRL),KC.LT(LOWER, KC.SPACE, prefer_hold=True, tap_time=TAP_TIME),
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LGUI,XXXXXXX,KC.MT(KC.TAB, KC.LCTRL),KC.LT(LOWER, KC.SPACE),
 
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
         KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
-        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT, prefer_hold=True),XXXXXXX,KC.LALT,KC.ENTER,
+        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT),XXXXXXX,KC.LALT,KC.ENTER,
 
         KC.MS_LEFT,KC.MS_RIGHT,
         KC.MW_UP,KC.MW_DOWN,
@@ -81,12 +83,12 @@ keyboard.keymap = [
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE, prefer_hold=True, tap_time=TAP_TIME),
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE),
 
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
         KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
-        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT, prefer_hold=True),XXXXXXX,KC.LALT,KC.ENTER,
+        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT),XXXXXXX,KC.LALT,KC.ENTER,
 
         KC.MS_LEFT,KC.MS_RIGHT,
         KC.MW_UP,KC.MW_DOWN,
