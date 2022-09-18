@@ -2,7 +2,7 @@ print("Starting")
 
 from kb import KMKKeyboard
 from kmk.keys import KC
-from i2c_oled_display import Oled,OledDisplayMode,OledReactionType,OledData
+from i2c_oled_display import Oled,OledDisplayMode,OledReactionType,OledData,init_display
 from kmk.extensions.media_keys import MediaKeys
 from kmk.modules.cg_swap import CgSwap
 from kmk.modules.modtap import ModTap
@@ -14,21 +14,25 @@ TAP_TIME = 200
 
 keyboard = KMKKeyboard()
 
-oled_ext = Oled(
-    keyboard.i2c,
-    OledData(
-        corner_one={0:OledReactionType.STATIC,1:["layer"]},
-        corner_two={0:OledReactionType.LAYER,1:["1","2","3","4"]},
-        corner_three={0:OledReactionType.LAYER,1:["base","raise","lower","adjust"]},
-        corner_four={0:OledReactionType.LAYER,1:["qwerty","nums","shifted","leds"]}
-    ),
-    toDisplay=OledDisplayMode.TXT,
-    flip=False
-    )
+# oled_ext = Oled(
+#     keyboard.i2c,
+#     OledData(
+#         corner_one={0:OledReactionType.STATIC,1:["layer"]},
+#         corner_two={0:OledReactionType.LAYER,1:["1","2","3","4"]},
+#         corner_three={0:OledReactionType.LAYER,1:["base","raise","lower","adjust"]},
+#         corner_four={0:OledReactionType.LAYER,1:["qwerty","nums","shifted","leds"]}
+#     ),
+#     toDisplay=OledDisplayMode.TXT,
+#     flip=False
+#     )
+
+# init_display(keyboard.i2c)
 
 media = MediaKeys()
 
-keyboard.extensions = [oled_ext, media]
+# keyboard.extensions = [oled_ext, media]
+keyboard.extensions = [media]
+
 
 layers_ext = Layers()
 cg_swap = CgSwap()
@@ -62,7 +66,7 @@ keyboard.keymap = [
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LGUI,XXXXXXX,KC.MT(KC.TAB, KC.LCTRL),KC.LT(LOWER, KC.SPACE, tap_time=TAP_TIME),
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LGUI,XXXXXXX,KC.MT(KC.TAB, KC.LCTRL),KC.LT(LOWER, KC.SPACE, prefer_hold=True, tap_time=TAP_TIME),
 
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
@@ -77,7 +81,7 @@ keyboard.keymap = [
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE, tap_time=TAP_TIME),
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE, prefer_hold=True, tap_time=TAP_TIME),
 
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
