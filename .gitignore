@@ -162,6 +162,7 @@ cython_debug/
 ## Hardware
 
 # Do not commit kicad backups
-*-backups
+pcb/*-backups
 # We generally want people to build gerbers from source
+*gerbers/
 *gerbers
