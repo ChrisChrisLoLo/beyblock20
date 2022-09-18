@@ -28,7 +28,8 @@ deviceName=$1
 
 if [[ $deviceName == "bc" ]]; then
   #driveName="           "
-  driveName="NO NAME"
+  #driveName="NO NAME"
+  driveName="CIRCUITPY"
   # rsync -c ./beyblock20_controller/* /Volumes/CIRCUITPY/
   # # Copy over libraries
   # rsync -cr ./libs/kmk_firmware/kmk /Volumes/CIRCUITPY/
