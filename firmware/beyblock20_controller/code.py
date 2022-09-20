@@ -2,19 +2,18 @@ print("Starting")
 
 from kb import KMKKeyboard
 from kmk.keys import KC
-from i2c_oled_display import Oled,OledDisplayMode,OledReactionType,OledData,init_display
 from kmk.extensions.media_keys import MediaKeys
 from kmk.modules.cg_swap import CgSwap
 from kmk.modules.modtap import ModTap
-from kmk.modules.tapdance import TapDance
 from kmk.modules.layers import Layers
 from kmk.modules.mouse_keys import MouseKeys
+from kmk.modules.rapidfire import RapidFire
 
 TAP_TIME = 300
 
 keyboard = KMKKeyboard()
 
-# keyboard.debug_enabled = True
+keyboard.debug_enabled = True
 
 # oled_ext = Oled(
 #     keyboard.i2c,
@@ -40,10 +39,11 @@ layers_ext = Layers()
 cg_swap = CgSwap()
 modtap = ModTap()
 mouse_keys = MouseKeys()
+rapid_fire = RapidFire()
 
 modtap.tap_time = TAP_TIME
 
-keyboard.modules = [layers_ext, cg_swap, modtap, mouse_keys]
+keyboard.modules = [layers_ext, cg_swap, modtap, mouse_keys, rapid_fire]
 
 # Cleaner key names
 _______ = KC.TRNS
@@ -64,17 +64,20 @@ LOWER_RAISE = 4
 
 
 keyboard.keymap = [
-    [
+    [   
+        # left half
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LGUI,XXXXXXX,KC.MT(KC.TAB, KC.LCTRL),KC.LT(LOWER, KC.SPACE),
-
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LGUI,KC.MT(KC.TAB, KC.LCTRL, tap_interrupted=True),KC.MO(LOWER),KC.SPACE,
+        
+        # right half
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
         KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
-        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT),XXXXXXX,KC.LALT,KC.ENTER,
+        KC.MO(RAISE),KC.MT(KC.RF(KC.BSPC), KC.LSHIFT),XXXXXXX,KC.LALT,KC.ENTER,
 
+        # encoders
         KC.MS_LEFT,KC.MS_RIGHT,
         KC.MW_UP,KC.MW_DOWN,
         KC.AUDIO_VOL_DOWN,KC.AUDIO_VOL_UP,
@@ -83,7 +86,7 @@ keyboard.keymap = [
         KC.Q,KC.W,KC.E,KC.R,KC.T,
         KC.A,KC.S,KC.D,KC.F,KC.G,
         KC.Z,KC.X,KC.C,KC.V,KC.B,
-        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI),KC.LT(LOWER, KC.SPACE),
+        KC.LT(LOWER_RAISE, KC.ESC, tap_time=TAP_TIME),KC.LCTRL,XXXXXXX,KC.MT(KC.TAB, KC.LGUI, tap_interrupted=True),KC.LT(LOWER, KC.SPACE, tap_interrupted=True),
 
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,

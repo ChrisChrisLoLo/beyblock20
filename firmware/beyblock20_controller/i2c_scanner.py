@@ -1,8 +1,5 @@
-from keypad_python_impl import EventQueue
-
 from kmk.scanners.keypad import Scanner
 from keypad import Event as KeyEvent
-
 
 class I2CScanner(Scanner):
     '''
