@@ -1,0 +1,6 @@
+(fp_lib_table
+  (lib (name "kbd")(type "KiCad")(uri "/Users/chriz/Documents/CAD/beyblock20/pcb/libs/kbd/kicad-footprints/kbd.pretty")(options "")(descr ""))
+  (lib (name "Keebio-Parts")(type "KiCad")(uri "/Users/chriz/Documents/CAD/beyblock20/pcb/libs/Keebio-Parts.pretty")(options "")(descr ""))
+  (lib (name "keyswitches")(type "KiCad")(uri "/Users/chriz/Documents/CAD/beyblock20/pcb/libs/keyswitches.pretty")(options "")(descr ""))
+  (lib (name "Seeeduino XIAO KICAD")(type "KiCad")(uri "/Users/chriz/Documents/CAD/beyblock20/pcb/libs/Seeeduino XIAO KICAD")(options "")(descr ""))
+)
