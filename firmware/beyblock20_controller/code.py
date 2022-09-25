@@ -3,8 +3,10 @@ print("Starting")
 from kb import KMKKeyboard
 from kmk.keys import KC
 from kmk.extensions.media_keys import MediaKeys
+from kmk.modules import tapdance
 from kmk.modules.cg_swap import CgSwap
 from kmk.modules.modtap import ModTap
+from kmk.modules.tapdance import TapDance
 from kmk.modules.layers import Layers
 from kmk.modules.mouse_keys import MouseKeys
 from kmk.modules.rapidfire import RapidFire
@@ -40,10 +42,12 @@ cg_swap = CgSwap()
 modtap = ModTap()
 mouse_keys = MouseKeys()
 rapid_fire = RapidFire()
+tap_dance = TapDance()
+tap_dance.tap_time = 150
 
 modtap.tap_time = TAP_TIME
 
-keyboard.modules = [layers_ext, cg_swap, modtap, mouse_keys, rapid_fire]
+keyboard.modules = [layers_ext, cg_swap, modtap, mouse_keys, rapid_fire, tap_dance]
 
 # Cleaner key names
 _______ = KC.TRNS
@@ -75,7 +79,7 @@ keyboard.keymap = [
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
         KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
-        KC.MO(RAISE),KC.MT(KC.RF(KC.BSPC), KC.LSHIFT),XXXXXXX,KC.LALT,KC.ENTER,
+        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT),XXXXXXX,KC.LALT,KC.ENTER,
 
         # encoders
         KC.MS_LEFT,KC.MS_RIGHT,
@@ -91,7 +95,7 @@ keyboard.keymap = [
         KC.Y,KC.U,KC.I,KC.O,KC.P,
         KC.H,KC.J,KC.K,KC.L,KC.SCOLON,
         KC.N,KC.M,KC.COMMA,KC.DOT,KC.SLASH,
-        KC.MO(RAISE),KC.MT(KC.BSPC, KC.LSHIFT),XXXXXXX,KC.LALT,KC.ENTER,
+        KC.MO(RAISE),KC.TD(KC.MT(KC.BSPC, KC.LSHIFT), KC.BSPC),XXXXXXX,KC.LALT,KC.ENTER,
 
         KC.MS_LEFT,KC.MS_RIGHT,
         KC.MW_UP,KC.MW_DOWN,
