@@ -29,10 +29,11 @@ Willingness to get new revisions:
 - I think the hardware interfaces will be generally pretty stable (i.e. you can make modules without worrying about me pulling a rug on you in terms of dimensions),
 though in the interests of making the best project possible, I reserve the ability to make new (breaking) revisions if absolutely needed.
 - The most likely case is I want to add a few new components, in which case you'll have to get a new board to get the features from said components.
+- This point is to emphasize that you will likely want a way to be able to make new cases/obtain new pcbs, and that the current ones aren't final. I would not recommend alpha to anyone who could only affort 1 keyboard for the next few years.
 
 Patience and kindness:
 - The two points above are reinforcements of this point. While I think there's a few more things I personally want to add to the project, I want people
-be able toy around with the project as they want if I need to reprioritize this project in my life. By making this sort of Alpha program, I hope to release
+be able toy around with the project as they want if I need to reprioritize this project in my life. By making this sort of Alpha program, I hope to release. I make no promises about where this project will go, but only what it currently is
 something usable to interested parties without being obligated to fix every edgecase and problem that arises
 - Please be understanding for any new features/fixes. I cannot promise anything, but I'll try to help where I can when I get the chance
 - Feel free to create an issue if you want advice or help. Someone may be able to answer a question you have
