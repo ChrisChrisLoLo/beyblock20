@@ -2,6 +2,7 @@
 
 beyblock20 and knoblin3 are now in states that I consider to be usable by eager alpha testers!
 (mongus48 pre-prototyping still underway: I need the shift registers to come in to confirm that it works)
+
 (the knoblin3 case also needs mounting holes :( )
 
 # What you get
