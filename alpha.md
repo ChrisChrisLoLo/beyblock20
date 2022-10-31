@@ -38,7 +38,7 @@ In the interests of making the best project possible, I reserve the ability to m
 
 Patience and kindness:
 - The two points above are reinforcements of this point. While I think there's a few more things I personally want to add to the project, I want people
-be able toy around with the project as they want if I need to reprioritize this project in my life. By making this sort of Alpha program, I hope to release. I make no promises about where this project will go, but only what it currently is
+be able toy around with the project as they want if I need to reprioritize this project in my life. By making this sort of Alpha program, I hope to release a prototype others can play with and build apon. I make no promises about where this project will go, but only what it currently is
 something usable to interested parties without being obligated to fix every edgecase and problem that arises
 - Please be understanding for any new features/fixes. I cannot promise anything, but I'll try to help where I can when I get the chance
 - Feel free to create an issue if you want advice or help. Someone may be able to answer a question you have
