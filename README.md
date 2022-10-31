@@ -32,7 +32,10 @@ Thank you to Seeedstudio for manufacturing these boards for free for the competi
 <img src="https://raw.githubusercontent.com/ChrisChrisLoLo/beyblock20/master/images/PXL_20220824_113234270.jpg" width="500">
 </span>
 ## Parts
+
 I will outline the main parts here, though since the design, isn't finalized, you may need a few addtional parts, like screws and such
+
+Beyblock40 BOM (knoblin3 and mongus48 BOM TBD)
 | Part                      | Count                               | Comment                                                                                                                                                      |
 |---------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Seeeduino XIAO RP2040     | 1 per module                        | You can try other XIAO variants, though more parts may be required to make something like a wireless beyblock20. Any firmware written will be for the RP2040 |
