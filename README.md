@@ -8,9 +8,13 @@ Video demo here: https://www.youtube.com/watch?v=Z132qLr78tY
 
 ## Status
 
-beyblock20: alpha
-knoblin3: alpha (though case needs mounting holes)
-mongus48: pre-prototyping phase: do not produce
+**beyblock20: alpha stage**
+
+**knoblin3: alpha stage (though case needs mounting holes)**
+
+**mongus48: pre-prototyping phase, do *not* produce**
+
+See more about alpha here: https://github.com/ChrisChrisLoLo/beyblock20/blob/master/alpha.md
 
 Prototyping phase. Firmware is a now working (!!!) though I will refine it to catch hotswap edgecases, as well as make the configuration process easier. I want to try to add capacitors to prevent voltage drops, as well as add some mounting holes to the knoblin3. If there's enough support for this project, I can work on adding new types of modules as well as refine the current ones. Anyone who wishes to expand on this idea are free to use the source files provided. I would produce these if you're looking to tinker and hack (and you're capable of doing so) at your own risk, though more work needs to be done before these are plug and play.
 
